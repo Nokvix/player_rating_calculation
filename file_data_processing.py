@@ -11,6 +11,7 @@ class Player:
     Объект игрока:
     name - ФИО игрока;
     rating - Рейтинг игрока;
+    new_rating - Рейтинг игрока после обсчёта;
     start_position - Стартовый номер игрока;
     player_id - Идентификационный номер игрока;
     points - Количество очков, набранных игроком в турнире;
@@ -21,6 +22,7 @@ class Player:
     def __init__(self, name, rating, start_position, player_id, points, results):
         self.name = name
         self.rating = rating
+        self.new_rating = rating
         self.start_position = start_position
         self.player_id = player_id
         self.points = points
@@ -99,7 +101,7 @@ def parse_data(player_str: str) -> Dict[str, str]:
     return player_groups
 
 
-def get_player_data_from_file(path_to_file: str) -> Dict[Player]:
+def get_player_data_from_file(path_to_file: str) -> Dict[int, Player]:
     """
     Функция читает файл формата smw,
     обращается к другим функциям и
@@ -121,5 +123,3 @@ def get_player_data_from_file(path_to_file: str) -> Dict[Player]:
 
     return players
 
-
-get_player_data_from_file()
