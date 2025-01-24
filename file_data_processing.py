@@ -48,7 +48,7 @@ def create_player(player_str: str) -> Player:
     results = reformat_results(player_data['results'])
     player = Player(
         name=player_data['name'],
-        rating=player_data['rating'],
+        rating=int(player_data['rating']),
         start_position=player_data['start_position'],
         player_id=player_data['id'],
         points=player_data['points'],
@@ -75,7 +75,11 @@ def reformat_results(results: str) -> Dict[int, int]:
     results_dict = {}
     for result_match in pattern.finditer(results):
         result_groups = result_match.groupdict()
-        results_dict[result_groups['opponent_number']] = result_groups['result']
+
+        if result_groups['result'] == '«':
+            result_groups['result'] = 0.5
+
+        results_dict[result_groups['opponent_number']] = int(result_groups['result'])
 
     return results_dict
 
