@@ -28,9 +28,13 @@ class Player:
         self.points = points
         self.results = results
 
+    def set_new_rating(self, new_rating: int) -> None:
+        self.new_rating = 1000 if new_rating < 1000 else new_rating
+
     def __str__(self):
-        return (f'name: {self.name}\nrating: {self.rating}\nstart_position: {self.start_position}\n'
-                f'player_id: {self.player_id}\npoints: {self.points}\nresults: {self.results}')
+        return (f'name: {self.name}\nrating: {self.rating}\nnew_rating: {self.new_rating}'
+                f'\nstart_position: {self.start_position}\nplayer_id: {self.player_id}'
+                f'\npoints: {self.points}\nresults: {self.results}')
 
 
 def create_player(player_str: str) -> Player:
