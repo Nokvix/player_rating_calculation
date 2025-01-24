@@ -7,6 +7,8 @@ from path import PATH_TO_FILE
 Код обрабатывает файлы формата smw
 """
 
+players = {}
+
 
 class Player:
     """
@@ -101,21 +103,23 @@ def parse_data(player_str: str) -> Dict[str, str]:
     return player_groups
 
 
-def main():
+def get_player_data_from_file(path_to_file=None):
+    global players
+
+    # with open(path_to_file, 'r') as file:
     with open(PATH_TO_FILE, 'r') as file:
         split_data = file.readline().split()
         number_players, number_tours = map(int, [split_data[0], split_data[1]])
         file_lines = file.readlines()
 
-    players = {}
     for i in range(number_players):
         player = create_player(file_lines[i].strip())
         players[player.start_position] = player
 
-    for player in players.values():
+    for key, player in players.items():
+        print('Стартовый номер:', key)
         print(player)
         print()
 
 
-if __name__ == '__main__':
-    main()
+get_player_data_from_file()
