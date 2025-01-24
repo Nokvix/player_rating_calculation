@@ -13,7 +13,7 @@
 #     print('\n}')
 
 
-rating_differential = {
+RATING_DIFFERENTIAL = {
     0: (0.50, 0.50),
     1: (0.50, 0.50),
     2: (0.50, 0.50),
